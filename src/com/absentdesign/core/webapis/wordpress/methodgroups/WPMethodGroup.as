@@ -128,10 +128,10 @@ package com.absentdesign.core.webapis.wordpress.methodgroups{
 		}
 		
 		protected override function dispatchFault(e:FaultEvent):void {
-			if(!e.bubbles) {
+			//if(!e.bubbles) {
 				var f:FaultEvent=FaultEvent.createEvent(e.fault);
 				service.dispatchEvent(f);
-			}
+			//}
 		}
 		
 		

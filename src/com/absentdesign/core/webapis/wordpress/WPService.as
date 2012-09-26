@@ -221,6 +221,7 @@ package com.absentdesign.core.webapis.wordpress{
 		private var connectAttempts:int=0;
 		public function reset(username:String, password:String):void {
 			connectAttempts=0;
+			_connecting=_connected=false;
 			this._username=username;
 			this._password=password
 		}
@@ -239,11 +240,13 @@ package com.absentdesign.core.webapis.wordpress{
 				
 				if(blog.xmlrpc_url.toLowerCase() == rslv.toLowerCase() || blog.xmlrpc_url.toLowerCase() == rslv2.toLowerCase()){
 					_blogId = blog.blog_id;
+					_connecting = false;
+					dispatchEvent(new WPServiceEvent(WPServiceEvent.CONNECTED,event.data));
 					break;
 				}
 			}
-			_connecting = false;
-			dispatchEvent(new WPServiceEvent(WPServiceEvent.CONNECTED,event.data));
+			/*_connecting = false;
+			dispatchEvent(new WPServiceEvent(WPServiceEvent.CONNECTED,event.data));*/
 		}
 		
 		public function get connected():Boolean{
