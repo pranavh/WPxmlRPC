@@ -59,7 +59,7 @@ package com.absentdesign.core.webapis.wordpress.events{
 		public static const UPLOAD_FILE:String="WPServiceEventUploadFile";
 		public static const GET_MEDIA_ITEM:String="WPServiceEventGetMediaItem";
 		public static const GET_MEDIA_LIBRARY:String="WPServiceEventGetMediaLibrary";
-		
+		public static const CONNECTION_ERROR:String="connectionError";
 
 		
 		/**
@@ -101,6 +101,7 @@ package com.absentdesign.core.webapis.wordpress.events{
 				case UPLOAD_FILE:
 				case GET_MEDIA_ITEM:
 				case GET_MEDIA_LIBRARY:
+				case CONNECTION_ERROR:
 					return true;
 					break;
 				default:

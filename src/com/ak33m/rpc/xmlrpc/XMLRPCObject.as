@@ -127,7 +127,7 @@ package com.ak33m.rpc.xmlrpc
 			responder.timeout = this.requestTimeout;
 			responder.addEventListener(RPCEvent.EVENT_RESULT,this.onResult);
             responder.addEventListener(RPCEvent.EVENT_FAULT,this.onFault);
-            responder.addEventListener(RPCEvent.EVENT_CANCEL,this.onRemoveResponder);
+            responder.addEventListener(RPCEvent.EVENT_CANCEL,this.onFault);
             ttoken.addResponder(responder);
             
             //Show Busy cursor 

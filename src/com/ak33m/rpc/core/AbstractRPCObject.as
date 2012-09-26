@@ -203,7 +203,7 @@ package com.ak33m.rpc.core
             responder.timeout = this.requestTimeout;
             responder.addEventListener(RPCEvent.EVENT_RESULT,this.onResult);
             responder.addEventListener(RPCEvent.EVENT_FAULT,this.onFault);
-            responder.addEventListener(RPCEvent.EVENT_CANCEL,this.onRemoveResponder);
+            responder.addEventListener(RPCEvent.EVENT_CANCEL,this.onFault);
             _responders.addItem(responder);
             var params : Array = args;
              //Show Busy cursor 
@@ -213,7 +213,7 @@ package com.ak33m.rpc.core
         
         protected function onRemoveResponder (event:Event):void //This method should be deprecated
         {
-        	//this._responders.removeItemAt(this._responders.getItemIndex(event.target));
+        	
         }
         /**
         * RPCEvent result handler. This dispatches a result event and invokes the result function of the responders in the RPC token

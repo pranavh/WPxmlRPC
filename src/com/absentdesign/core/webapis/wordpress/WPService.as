@@ -62,6 +62,7 @@ package com.absentdesign.core.webapis.wordpress{
 	[Event(name="WPServiceEventUploadFile", type="com.absentdesign.core.webapis.wordpress.events.WPServiceEvent")]
 	[Event(name="WPServiceEventGetMediaItem", type="com.absentdesign.core.webapis.wordpress.events.WPServiceEvent")]
 	[Event(name="WPServiceEventGetMediaLibrary", type="com.absentdesign.core.webapis.wordpress.events.WPServiceEvent")]
+	[Event(name="connectionError", type="com.absentdesign.core.webapis.wordpress.events.WPServiceEvent")]
 	[Event(name="fault", type="mx.rpc.events.FaultEvent")]
 	public class WPService extends Service{
 		
@@ -80,6 +81,8 @@ package com.absentdesign.core.webapis.wordpress{
 		private var _media:Media;
 		private var _connected:Boolean;
 		private var _connecting:Boolean;
+		
+		public var maxConnectAttempts:int=5;
 		
 		/**
 		* @param endpoint The main endpoint for the WordPress install eg: http://myblogname.wordpress.com/
@@ -204,9 +207,22 @@ package com.absentdesign.core.webapis.wordpress{
 			if(connected){
 				return;
 			}
-			_connecting = true;
-			addEventListener(WPServiceEvent.GET_USERS_BLOGS,connectedHandler, false, 0, true);
-			blogs.getUsersBlogs();
+			
+			if(connectAttempts < maxConnectAttempts) {
+				_connecting = true;
+				addEventListener(WPServiceEvent.GET_USERS_BLOGS,connectedHandler, false, 0, true);
+				blogs.getUsersBlogs();
+				connectAttempts++;
+			} else {
+				dispatchEvent(new WPServiceEvent(WPServiceEvent.CONNECTION_ERROR));
+			}
+		}
+		
+		private var connectAttempts:int=0;
+		public function reset(username:String, password:String):void {
+			connectAttempts=0;
+			this._username=username;
+			this._password=password
 		}
 		
 		private function connectedHandler(event:ServiceEvent):void{
