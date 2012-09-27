@@ -22,7 +22,7 @@ package com.absentdesign.core.webapis.wordpress.methodgroups
 		
 		/**
 		 * Wrapper for wp.uploadFile - uploads the supplied file
-		 * <p>Will dispatch a ServiceEvent of type WPServiceEvent.GET_USERS_BLOGS with an array of blogs 
+		 * <p>Will dispatch a ServiceEvent of type WPServiceEvent.UPLOAD_FILE with an array of blogs 
 		 * as the WPServiceEvent.data once loaded</p>
 		 */
 		public function uploadFile(name:String, type:String, data:ByteArray, overwrite:Boolean=true):void{
