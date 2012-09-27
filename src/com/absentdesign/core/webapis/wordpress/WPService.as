@@ -90,6 +90,10 @@ package com.absentdesign.core.webapis.wordpress{
 		* @param password The password for this WordPress install
 		*/
 		public function WPService(endpoint:String,username:String,password:String){
+			if(endpoint.charAt(endpoint.length-1) != "/") {
+				endpoint += "/";
+			}
+			
 			this.endpoint = endpoint;
 		    _username = username;
 		    _password = password;
