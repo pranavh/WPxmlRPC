@@ -227,6 +227,12 @@ package com.absentdesign.core.webapis.wordpress.methodgroups{
 			post.mt_allow_pings = struct.mt_allow_pings;
 			post.mt_convert_breaks = struct.mt_convert_breaks;
 			post.mt_keywords = struct.mt_keywords;
+			if(struct.post_thumbnail != null) {
+				post.post_thumbnail=struct.post_thumbnail;
+			}
+			if(struct.wp_post_thumbnail != null) {
+				post.wp_post_thumbnail=struct.wp_post_thumbail;
+			}
 			return post;
 		}
 

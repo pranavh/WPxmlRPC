@@ -58,6 +58,8 @@ package com.absentdesign.core.webapis.wordpress{
 		public var categories:Array;
 		public var sticky:Boolean;
 		public var publish:int=1;
+		public var post_thumbnail:int=-1;
+		public var wp_post_thumbnail:int=-1;
 		
 	}
 	
